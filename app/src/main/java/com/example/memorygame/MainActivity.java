@@ -97,6 +97,15 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
+
+                if(puntuaje == 500) {
+                    Toast.makeText(MainActivity.this, "Has ganado!", Toast.LENGTH_SHORT).show();
+                    restoreGame();
+                }
+                if(vidas == 0){
+                    Toast.makeText(MainActivity.this, "Perdiste, has conseguido " + puntuaje + " puntos, empieza desde cero", Toast.LENGTH_SHORT).show();
+                    restoreGame();
+                }
             }
         }));
 
@@ -110,6 +119,18 @@ public class MainActivity extends AppCompatActivity {
 
         imagesSetter(buttons);
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void restoreGame(){
+        Arrays.stream(imgButtons).sequential().forEach(btn -> btn.setImageResource(defaultImage));
+        Arrays.stream(imgButtons).parallel().forEach(btn -> btn.setAdjustViewBounds(true));
+        Arrays.stream(imgButtons).parallel().forEach(btn -> btn.setMaxWidth(300));
+        Arrays.stream(imgButtons).parallel().forEach(btn -> btn.setMaxHeight(300));
+        Arrays.stream(imgButtons).parallel().forEach(btn -> btn.setPadding(5,5,5,5));
+        Arrays.stream(imgButtons).parallel().forEach(btn -> btn.setBackgroundColor(Color.TRANSPARENT));
+
+        imagesSetter(imgButtons);
     }
 
 
