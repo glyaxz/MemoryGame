@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Arrays;
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView txtUser = findViewById(R.id.txtUser);
+        Bundle b = getIntent().getExtras();
+        String user = b.getString("user");
+        txtUser.setText("Usuario: " + user);
 
         ImageButton[] buttons = {
                 findViewById(R.id.imgbtn1),
